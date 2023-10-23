@@ -3,9 +3,8 @@ package com.topics.controller;
 import com.topics.allTopics.Topics;
 import com.topics.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,5 +25,19 @@ public class getTopics {
     @RequestMapping("/topics/{id}")
     public Topics getTopicById(@PathVariable String id) {
         return topicService.getTopicById(id);
+    }
+
+    /**
+     * for post method, to add new topics.
+     */
+
+    @RequestMapping(method = RequestMethod.POST, value = "/topics")
+    public void addTopic(@RequestBody Topics topic) {
+        topicService.addNewTopic(topic);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/topics/{id}")
+    public void updateTopic(@RequestBody Topics topics, String id) {
+        topicService.updateTopic(topics, id);
     }
 }
