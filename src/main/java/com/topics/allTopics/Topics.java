@@ -1,6 +1,9 @@
 package com.topics.allTopics;
 
 
+/**
+ * this is my Entity class or you can say data model class.
+ */
 public class Topics {
 
     private String id;

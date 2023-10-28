@@ -1,8 +1,11 @@
 package com.topics.service;
 
 import com.topics.allTopics.Topics;
+import com.topics.utils.ExcelUtil;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,5 +36,11 @@ public class TopicService {
                  allTopic.add(i, topics);
              }
          }
+    }
+
+    public ByteArrayInputStream downloadTopics() throws IOException {
+        ExcelUtil excelUtil = new ExcelUtil();
+        ByteArrayInputStream data = excelUtil.dataToExcel(allTopic);
+        return data;
     }
 }
